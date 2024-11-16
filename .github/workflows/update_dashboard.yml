@@ -27,23 +27,9 @@ jobs:
           python iot_dashboard.py
         id: run_script
 
-      - name: Check if README.md was updated
+      - name: Check for changes and commit
         run: |
-          if [[ "$(git status --porcelain)" != "" ]]; then
-            echo "Changes detected, committing and pushing."
-          else
-            echo "No changes detected, skipping commit."
-            exit 0
-          fi
-
-      - name: Commit and Push Changes to New Branch
-        run: |
-          git checkout -b update-dashboard
-          git config user.name "GitHub Action"
-          git config user.email "actions@github.com"
-          git add README.md
-          git commit -m "Update IoT Dashboard"
-          git push origin update-dashboard
+          git diff --exit-code README.md || (git add README.md && git commit -m "Update IoT Dashboard" && git push origin update-dashboard)
         env:
           GITHUB_TOKEN: ${{ secrets.WEATHER_TOKEN }}
 
