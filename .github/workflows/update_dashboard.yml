@@ -51,14 +51,16 @@ jobs:
         run: |
           git fetch --all  # Fetch all branches from remote
 
-      - name: Resolve merge conflicts automatically
+      - name: Start Rebase and Resolve Conflicts
         run: |
-          # Attempt to resolve the conflict automatically by choosing the remote version
+          git pull origin update-dashboard --rebase  # Pull with rebase to integrate changes from remote branch
+
+      - name: Resolve Merge Conflicts
+        run: |
+          # Resolve conflicts by automatically choosing the remote version of conflicting files
           git checkout --theirs .github/workflows/update_dashboard.yml
           git add .github/workflows/update_dashboard.yml
-          
-          # Continue the rebase after resolving conflicts
-          git rebase --continue
+          git rebase --continue  # Continue the rebase process after resolving conflicts
 
       - name: Push changes to update-dashboard
         run: |
