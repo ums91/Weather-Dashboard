@@ -4,8 +4,11 @@ import datetime
 # IoT API configuration (replace with actual API and endpoint)
 API_URL = "https://api.open-meteo.com/v1/forecast"
 PARAMS = {
-    "latitude": 18.5277,  # Replace with your location's latitude
-    "longitude": 73.9515,  # Replace with your location's longitude
+    #"latitude": 18.5277,  # Replace with your location's latitude 
+    #"longitude": 73.9515,  # Replace with your location's longitude
+    "latitude": 34.1481,  # Replace with your location's latitude 
+    "longitude": 74.8418,  # Replace with your location's longitude
+    
     "current_weather": True
 }
 
