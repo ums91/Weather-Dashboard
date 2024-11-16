@@ -36,16 +36,21 @@ jobs:
         run: |
           git checkout -B update-dashboard  # Creates and switches to the update-dashboard branch
 
+      - name: Fetch remote changes and merge
+        run: |
+          git fetch origin
+          git merge origin/update-dashboard --no-edit  # Merges remote changes into the local branch
+
       - name: Check for changes and commit
         run: |
           git diff --exit-code README.md || (git add README.md && git commit -m "Update IoT Dashboard" && git push origin update-dashboard)
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.WEATHER_TOKEN }}
 
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v5
         with:
-          token: ${{ secrets.WEATHER_TOKEN }}
+          token: ${{ secrets.GITHUB_TOKEN }}
           branch: update-dashboard
           base: main  # Specify the target branch as 'main'
           title: "Update IoT Dashboard"
