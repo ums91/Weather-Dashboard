@@ -47,5 +47,6 @@ jobs:
         with:
           token: ${{ secrets.WEATHER_TOKEN }}
           branch: update-dashboard
+          base: main  # Specify the target branch as 'main'
           title: "Update IoT Dashboard"
           body: "Automated update of IoT data."
