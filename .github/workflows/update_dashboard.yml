@@ -27,16 +27,21 @@ jobs:
           python iot_dashboard.py
         id: run_script
 
+      - name: Configure Git
+        run: |
+          git config --global user.name "GitHub Actions"
+          git config --global user.email "actions@github.com"
+
       - name: Check for changes and commit
         run: |
           git diff --exit-code README.md || (git add README.md && git commit -m "Update IoT Dashboard" && git push origin update-dashboard)
         env:
-          GITHUB_TOKEN: ${{ secrets.WEATHER_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v5
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ secrets.WEATHER_TOKEN }}
           branch: update-dashboard
           title: "Update IoT Dashboard"
           body: "Automated update of IoT data."
