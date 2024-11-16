@@ -51,11 +51,9 @@ jobs:
         run: |
           git fetch --all  # Fetch all branches from remote
 
-      - name: Merge with the main branch
+      - name: Pull remote changes to update-dashboard
         run: |
-          git checkout update-dashboard || git checkout -b update-dashboard  # Ensure we are on the correct branch
-          git fetch origin main  # Fetch the latest main branch
-          git merge origin/main --allow-unrelated-histories --strategy-option=theirs --no-edit  # Merge changes from main
+          git pull origin update-dashboard --rebase  # Pull changes and rebase to keep history clean
 
       - name: Push changes to update-dashboard
         run: |
