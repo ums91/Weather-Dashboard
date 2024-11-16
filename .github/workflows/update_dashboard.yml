@@ -23,7 +23,18 @@ jobs:
           pip install -r requirements.txt
 
       - name: Run IoT Dashboard Script
-        run: python iot_dashboard.py
+        run: |
+          python iot_dashboard.py
+        id: run_script
+
+      - name: Check if README.md was updated
+        run: |
+          if [[ "$(git status --porcelain)" != "" ]]; then
+            echo "Changes detected, committing and pushing."
+          else
+            echo "No changes detected, skipping commit."
+            exit 0
+          fi
 
       - name: Commit and Push Changes to New Branch
         run: |
@@ -34,12 +45,12 @@ jobs:
           git commit -m "Update IoT Dashboard"
           git push origin update-dashboard
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.WEATHER_TOKEN }}
 
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v5
         with:
-          token: ${{ secrets.WEATHER_TOKEN }}
+          token: ${{ secrets.GITHUB_TOKEN }}
           branch: update-dashboard
           title: "Update IoT Dashboard"
           body: "Automated update of IoT data."
