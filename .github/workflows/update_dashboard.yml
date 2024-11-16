@@ -53,18 +53,18 @@ jobs:
 
       - name: Start Rebase and Resolve Conflicts
         run: |
-          git pull origin update-dashboard --rebase  # Pull with rebase to integrate changes from remote branch
+          # Attempt to pull with rebase
+          git pull origin update-dashboard --rebase || echo "Rebase failed, attempting merge instead"
           
-          # Resolve conflicts by automatically choosing the remote version of the conflicting files
-          git checkout --theirs .github/workflows/update_dashboard.yml  # Use remote version for workflow
-          git checkout --theirs iot_dashboard.py  # Use remote version for the script file
-
+          # Resolve conflicts automatically using 'theirs' strategy
+          git merge -X theirs update-dashboard  # Force use of remote version (conflicting changes are overridden)
+          
           # Stage resolved files
           git add .github/workflows/update_dashboard.yml
           git add iot_dashboard.py
 
           # Continue the rebase process after resolving conflicts
-          git rebase --continue
+          git rebase --continue || echo "Rebase failed, proceeding to force push"
 
       - name: Push changes to update-dashboard
         run: |
