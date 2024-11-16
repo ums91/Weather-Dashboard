@@ -1,11 +1,12 @@
 import requests
 import datetime
+import os
 
 # IoT API configuration (replace with actual API and endpoint)
 API_URL = "https://api.open-meteo.com/v1/forecast"
 PARAMS = {
-    "latitude": 18.5277,  # Replace with your location's latitude
-    "longitude": 73.9515,  # Replace with your location's longitude
+    "latitude": 40.7128,  # Replace with your location's latitude
+    "longitude": -74.0060,  # Replace with your location's longitude
     "current_weather": True,
     "hourly": "temperature_2m,humidity_2m,precipitation,cloudcover,visibility,uv_index,pressure"
 }
@@ -58,9 +59,17 @@ _Last Updated: {data.get('datetime', 'N/A')}_
 - **Pressure:** {data.get('pressure', 'N/A')} hPa
 
 *Powered by Open-Meteo API*
+
+---
+
+_Last Update Check: {datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')}_
 """
-    with open("README.md", "w") as readme:
+    
+    # Force an update to README (timestamp change)
+    readme_file_path = "README.md"
+    with open(readme_file_path, "w") as readme:
         readme.write(dashboard)
+    return True  # File is updated
 
 if __name__ == "__main__":
     iot_data = fetch_iot_data()
