@@ -35,12 +35,17 @@ jobs:
 
       - name: Create or Switch to update-dashboard Branch
         run: |
-          git checkout -B update-dashboard  # Creates and switches to the update-dashboard branch
+          git checkout -B update-dashboard  # Create or switch to the update-dashboard branch
 
-      - name: Commit local changes if any
+      - name: Force Update README.md
         run: |
-          git add README.md || echo "No changes to commit"
-          git commit -m "Update IoT Dashboard" || echo "No changes to commit"
+          # Update the README to include the latest timestamp (or any other minor change)
+          current_time=$(date "+%Y-%m-%d %H:%M:%S")
+          sed -i "s/_Last Update Check: .*/_Last Update Check: $current_time/" README.md  # Replace timestamp in README
+          
+          # Stage and commit the changes to README.md
+          git add README.md
+          git commit -m "Update IoT Dashboard with latest data" || echo "No changes to commit"
 
       - name: Fetch remote branches
         run: |
@@ -56,12 +61,12 @@ jobs:
         run: |
           git push origin update-dashboard
         env:
-          GITHUB_TOKEN: ${{ secrets.WEATHER_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.WEATHER_TOKEN }}  # Use WEATHER_TOKEN for authentication
 
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v5
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ secrets.WEATHER_TOKEN }}  # Use WEATHER_TOKEN for authentication
           branch: update-dashboard
           base: main  # Specify the target branch as 'main'
           title: "Update IoT Dashboard"
