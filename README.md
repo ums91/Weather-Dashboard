@@ -1,10 +1,15 @@
 
-# Weather Dashboard for Pune, MH
+# IoT Dashboard
 
-_Last Updated: 2024-11-16 17:52:48_
+_Last Updated: N/A_
 
 ## Current Weather Data:
-- **Temperature:** 4.2 °C
-- **Wind Speed:** 2.3 km/h
+- **Temperature:** N/A °C
+- **Humidity:** N/A %
+- **Precipitation:** N/A mm
+- **Cloud Cover:** N/A %
+- **Visibility:** N/A km
+- **UV Index:** N/A
+- **Pressure:** N/A hPa
 
 *Powered by Open-Meteo API*
