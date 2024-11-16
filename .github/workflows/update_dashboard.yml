@@ -51,13 +51,18 @@ jobs:
         run: |
           git fetch --all  # Fetch all branches from remote
 
-      - name: Pull remote changes to update-dashboard
+      - name: Resolve merge conflicts automatically
         run: |
-          git pull origin update-dashboard --rebase  # Pull changes and rebase to keep history clean
+          # Attempt to resolve the conflict automatically by choosing the remote version
+          git checkout --theirs .github/workflows/update_dashboard.yml
+          git add .github/workflows/update_dashboard.yml
+          
+          # Continue the rebase after resolving conflicts
+          git rebase --continue
 
       - name: Push changes to update-dashboard
         run: |
-          git push origin update-dashboard
+          git push origin update-dashboard --force  # Force push to update the remote branch
         env:
           GITHUB_TOKEN: ${{ secrets.WEATHER_TOKEN }}  # Use WEATHER_TOKEN for authentication
 
