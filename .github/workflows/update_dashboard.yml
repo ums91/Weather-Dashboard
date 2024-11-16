@@ -58,7 +58,7 @@ jobs:
       - name: Resolve Merge Conflicts
         run: |
           # Resolve conflicts by automatically choosing the remote version of conflicting files
-          git checkout --theirs .github/workflows/update_dashboard.yml
+          git checkout --theirs .github/workflows/update_dashboard.yml  # Accept changes from the remote version
           git add .github/workflows/update_dashboard.yml
           git rebase --continue  # Continue the rebase process after resolving conflicts
 
