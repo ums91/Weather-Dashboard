@@ -36,14 +36,19 @@ jobs:
         run: |
           git checkout -B update-dashboard  # Creates and switches to the update-dashboard branch
 
+      - name: Commit local changes if any
+        run: |
+          git add README.md || echo "No changes to commit"
+          git commit -m "Update IoT Dashboard" || echo "No changes to commit"
+
       - name: Fetch remote changes and merge with unrelated histories
         run: |
           git fetch origin
           git merge origin/update-dashboard --allow-unrelated-histories --no-edit  # Merge with the --allow-unrelated-histories flag
 
-      - name: Check for changes and commit
+      - name: Push changes
         run: |
-          git diff --exit-code README.md || (git add README.md && git commit -m "Update IoT Dashboard" && git push origin update-dashboard)
+          git push origin update-dashboard
         env:
           GITHUB_TOKEN: ${{ secrets.WEATHER_TOKEN }}
 
