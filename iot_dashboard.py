@@ -39,8 +39,10 @@ def fetch_iot_data():
             "pressure": pressure,
             "datetime": datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
         }
+    except requests.exceptions.RequestException as e:
+        return {"error": f"Request failed: {str(e)}"}
     except Exception as e:
-        return {"error": str(e)}
+        return {"error": f"Error occurred: {str(e)}"}
 
 def update_readme(data):
     """Updates the README.md file with IoT data."""
@@ -63,6 +65,7 @@ _Last Updated: {data.get('datetime', 'N/A')}_
 ---
 
 _Last Update Check: {datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')}_
+
 """
     
     # Force an update to README (timestamp change)
