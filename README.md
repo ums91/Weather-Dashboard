@@ -1,20 +1,10 @@
 
-# IoT Dashboard
+# Current Weather Dashboard
 
-_Last Updated: N/A_
+_Last Updated: 2024-11-17 05:42:32_
 
 ## Current Weather Data:
-- **Temperature:** N/A °C
-- **Humidity:** N/A %
-- **Precipitation:** N/A mm
-- **Cloud Cover:** N/A %
-- **Visibility:** N/A km
-- **UV Index:** N/A
-- **Pressure:** N/A hPa
+- **Temperature:** 6.8 °C
+- **Wind Speed:** 9.1 km/h
 
 *Powered by Open-Meteo API*
-
----
-
-_Last Update Check: 2024-11-17 05:37:59_
-
