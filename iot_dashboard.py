@@ -24,16 +24,45 @@ def fetch_iot_data():
     except Exception as e:
         return {"error": str(e)}
 
+def get_temp_label(temp):
+    """Returns the temperature label based on the value."""
+    if temp is None:
+        return "N/A"
+    if temp > 40:
+        return "Severe_Temp"
+    elif 30 < temp <= 40:
+        return "High_Temp"
+    elif 20 <= temp <= 30:
+        return "Medium_Temp"
+    else:
+        return "Low_Temp"
+
+def get_wind_label(speed):
+    """Returns the wind speed label based on the value."""
+    if speed is None:
+        return "N/A"
+    if speed > 150:
+        return "Severe_Wind"
+    elif 80 < speed <= 150:
+        return "High_Wind"
+    elif 30 <= speed <= 80:
+        return "Medium_Wind"
+    else:
+        return "Low_Wind"
+
 def update_readme(data):
     """Updates the README.md file with IoT data."""
+    temp_label = get_temp_label(data.get("temperature"))
+    wind_label = get_wind_label(data.get("windspeed"))
+
     dashboard = f"""
 # Current Weather Dashboard
 
 _Last Updated: {data.get('datetime', 'N/A')}_
 
 ## Current Weather Data: (Pune, MH)
-- **Temperature:** {data.get('temperature', 'N/A')} °C
-- **Wind Speed:** {data.get('windspeed', 'N/A')} km/h
+- **Temperature:** {data.get('temperature', 'N/A')} °C ({temp_label})
+- **Wind Speed:** {data.get('windspeed', 'N/A')} km/h ({wind_label})
 
 *Powered by Open-Meteo API*
 """
