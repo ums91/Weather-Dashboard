@@ -24,36 +24,35 @@ def fetch_iot_data():
     except Exception as e:
         return {"error": str(e)}
 
-def get_temp_label(temp):
-    """Returns the temperature label based on the value."""
-    if temp is None:
-        return "N/A"
-    if temp > 40:
-        return "Severe_Temp"
-    elif 30 < temp <= 40:
-        return "High_Temp"
-    elif 20 <= temp <= 30:
-        return "Medium_Temp"
-    else:
-        return "Low_Temp"
-
-def get_wind_label(speed):
-    """Returns the wind speed label based on the value."""
-    if speed is None:
-        return "N/A"
-    if speed > 150:
-        return "Severe_Wind"
-    elif 80 < speed <= 150:
-        return "High_Wind"
-    elif 30 <= speed <= 80:
-        return "Medium_Wind"
-    else:
-        return "Low_Wind"
+def get_badge_url(value, category):
+    """Returns a badge URL with dynamic colors based on severity."""
+    if value is None:
+        return "https://img.shields.io/badge/Status-N/A-lightgrey"
+    
+    if category == "temperature":
+        if value > 40:
+            return "https://img.shields.io/badge/Temperature-Severe%20Temp-red"
+        elif 30 < value <= 40:
+            return "https://img.shields.io/badge/Temperature-High%20Temp-orange"
+        elif 20 <= value <= 30:
+            return "https://img.shields.io/badge/Temperature-Medium%20Temp-green"
+        else:
+            return "https://img.shields.io/badge/Temperature-Low%20Temp-blue"
+    
+    if category == "windspeed":
+        if value > 40:
+            return "https://img.shields.io/badge/Wind%20Speed-Severe%20Wind-red"
+        elif 30 < value <= 40:
+            return "https://img.shields.io/badge/Wind%20Speed-High%20Wind-orange"
+        elif 20 <= value <= 30:
+            return "https://img.shields.io/badge/Wind%20Speed-Medium%20Wind-green"
+        else:
+            return "https://img.shields.io/badge/Wind%20Speed-Low%20Wind-blue"
 
 def update_readme(data):
-    """Updates the README.md file with IoT data."""
-    temp_label = get_temp_label(data.get("temperature"))
-    wind_label = get_wind_label(data.get("windspeed"))
+    """Updates the README.md file with IoT data and badges."""
+    temp_badge = get_badge_url(data.get("temperature"), "temperature")
+    wind_badge = get_badge_url(data.get("windspeed"), "windspeed")
 
     dashboard = f"""
 # Current Weather Dashboard
@@ -61,8 +60,8 @@ def update_readme(data):
 _Last Updated: {data.get('datetime', 'N/A')}_
 
 ## Current Weather Data: (Pune, MH)
-- **Temperature:** {data.get('temperature', 'N/A')} °C ({temp_label})
-- **Wind Speed:** {data.get('windspeed', 'N/A')} km/h ({wind_label})
+- **Temperature:** {data.get('temperature', 'N/A')} °C ![Temperature Badge]({temp_badge})
+- **Wind Speed:** {data.get('windspeed', 'N/A')} km/h ![Wind Speed Badge]({wind_badge})
 
 *Powered by Open-Meteo API*
 """
