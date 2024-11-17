@@ -1,6 +1,5 @@
 import requests
 import datetime
-import os
 
 # IoT API configuration (replace with actual API and endpoint)
 API_URL = "https://api.open-meteo.com/v1/forecast"
@@ -67,12 +66,10 @@ _Last Updated: {data.get('datetime', 'N/A')}_
 _Last Update Check: {datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')}_
 
 """
-    
-    # Force an update to README (timestamp change)
     readme_file_path = "README.md"
     with open(readme_file_path, "w") as readme:
         readme.write(dashboard)
-    return True  # File is updated
+    print("README.md updated successfully.")
 
 if __name__ == "__main__":
     iot_data = fetch_iot_data()
