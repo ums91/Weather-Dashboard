@@ -55,7 +55,7 @@ def update_readme(data):
     wind_badge = get_badge_url(data.get("windspeed"), "windspeed")
 
     dashboard = f"""
-# Current Weather Dashboard
+# Weather Dashboard
 
 _Last Updated: {data.get('datetime', 'N/A')}_
 
