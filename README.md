@@ -1,10 +1,10 @@
 
 # Weather Dashboard
 
-_Last Updated: 2024-11-23 00:45:36_
+_Last Updated: 2024-11-23 02:13:33_
 
 ## Current Weather Data: (Pune, MH)
-- **Temperature:** 14.7 °C ![Temperature Badge](https://img.shields.io/badge/Temperature-Low%20Temp-blue)
-- **Wind Speed:** 4.7 km/h ![Wind Speed Badge](https://img.shields.io/badge/Wind%20Speed-Low%20Wind-blue)
+- **Temperature:** 15.3 °C ![Temperature Badge](https://img.shields.io/badge/Temperature-Low%20Temp-blue)
+- **Wind Speed:** 4.3 km/h ![Wind Speed Badge](https://img.shields.io/badge/Wind%20Speed-Low%20Wind-blue)
 
 *Powered by Open-Meteo API*
