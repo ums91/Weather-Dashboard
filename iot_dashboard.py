@@ -1,7 +1,7 @@
 import requests
 import datetime
 
-# IoT API configuration (replace with actual API and endpoint)
+# IoT API configuration
 API_URL = "https://api.open-meteo.com/v1/forecast"
 PARAMS = {
     "latitude": 18.5277,  # Replace with your location's latitude
@@ -40,14 +40,30 @@ def get_badge_url(value, category):
             return "https://img.shields.io/badge/Temperature-Low%20Temp-blue"
     
     if category == "windspeed":
-        if value > 40:
-            return "https://img.shields.io/badge/Wind%20Speed-Severe%20Wind-red"
-        elif 30 < value <= 40:
-            return "https://img.shields.io/badge/Wind%20Speed-High%20Wind-orange"
-        elif 20 <= value <= 30:
-            return "https://img.shields.io/badge/Wind%20Speed-Medium%20Wind-green"
+        if value >= 128:
+            return "https://img.shields.io/badge/Wind%20Speed-Hurricane-red"
+        elif value >= 112:
+            return "https://img.shields.io/badge/Wind%20Speed-Storm-red"
+        elif value >= 96:
+            return "https://img.shields.io/badge/Wind%20Speed-Whole%20Gale-orange"
+        elif value >= 80:
+            return "https://img.shields.io/badge/Wind%20Speed-Strong%20Gale-orange"
+        elif value >= 72:
+            return "https://img.shields.io/badge/Wind%20Speed-Fresh%20Gale-orange"
+        elif value >= 56:
+            return "https://img.shields.io/badge/Wind%20Speed-Moderate%20Gale-yellow"
+        elif value >= 48:
+            return "https://img.shields.io/badge/Wind%20Speed-Strong%20Breeze-yellow"
+        elif value >= 40:
+            return "https://img.shields.io/badge/Wind%20Speed-Fresh%20Breeze-green"
+        elif value >= 32:
+            return "https://img.shields.io/badge/Wind%20Speed-Moderate%20Breeze-blue"
+        elif value >= 26:
+            return "https://img.shields.io/badge/Wind%20Speed-Gentle%20Breeze-blue"
+        elif value >= 18:
+            return "https://img.shields.io/badge/Wind%20Speed-Light%20Breeze-blue"
         else:
-            return "https://img.shields.io/badge/Wind%20Speed-Low%20Wind-blue"
+            return "https://img.shields.io/badge/Wind%20Speed-Light%20Wind-blue"
 
 def update_readme(data):
     """Updates the README.md file with IoT data and badges."""
