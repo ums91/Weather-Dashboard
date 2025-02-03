@@ -4,8 +4,8 @@ import datetime
 # IoT API configuration
 API_URL = "https://api.open-meteo.com/v1/forecast"
 PARAMS = {
-    "latitude": 18.5277,  # Replace with your location's latitude
-    "longitude": 73.9515,  # Replace with your location's longitude
+    "latitude": 34.1489,  # Replace with your location's latitude
+    "longitude": 74.8377,  # Replace with your location's longitude
     "current_weather": True
 }
 
@@ -75,7 +75,7 @@ def update_readme(data):
 
 _Last Updated: {data.get('datetime', 'N/A')}_
 
-## Current Weather Data: (Pune, MH)
+## Current Weather Data: (Srinagar, JK)
 - **Temperature:** {data.get('temperature', 'N/A')} °C ![Temperature Badge]({temp_badge})
 - **Wind Speed:** {data.get('windspeed', 'N/A')} km/h ![Wind Speed Badge]({wind_badge})
 
