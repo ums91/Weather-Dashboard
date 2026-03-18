@@ -1,10 +1,10 @@
 
 # Weather Dashboard
 
-_Last Updated: 2026-03-18 01:15:56_
+_Last Updated: 2026-03-18 04:13:42_
 
 ## Current Weather Data: (Srinagar, JK)
-- **Temperature:** 5.2 °C ![Temperature Badge](https://img.shields.io/badge/Temperature-Low%20Temp-blue)
-- **Wind Speed:** 4.3 km/h ![Wind Speed Badge](https://img.shields.io/badge/Wind%20Speed-Light%20Wind-blue)
+- **Temperature:** 7.3 °C ![Temperature Badge](https://img.shields.io/badge/Temperature-Low%20Temp-blue)
+- **Wind Speed:** 1.6 km/h ![Wind Speed Badge](https://img.shields.io/badge/Wind%20Speed-Light%20Wind-blue)
 
 *Powered by Open-Meteo API*
